@@ -10,24 +10,29 @@
 
 **Người dùng:** học sinh / học viên tự học, có thói quen tô và ghi chú khi đọc bài.
 
-**Vấn đề (từ Day 17):** dấu vết học tập (highlight, câu hỏi, chỗ chưa hiểu) rời rạc, hiếm được xem lại. Chỗ "chưa hiểu" thường bị bỏ quên. Người được phỏng vấn ghi chú vào notepad nhưng "lý thuyết ghi trong file nhiều lúc mất đi context của nó" và "học quá nhiều nên chưa có khả năng ôn tập lại".
+**Vấn đề (từ Day 17):** dấu vết học tập (highlight, câu hỏi, chỗ chưa hiểu) rời rạc, hiếm được xem lại. Chỗ "chưa hiểu" thường bị bỏ quên. Người được phỏng vấn ghi chú vào notepad nhưng "lý thuyết ghi trong file nhiều lúc mất đi context của nó" và "học quá nhiều nên chưa có khả năng ôn tập lại". Lượt luyện phỏng vấn Day 17 của Linh cho tín hiệu tương tự: người học chụp/lưu phần khó rồi tốn thêm thời gian đối chiếu lại với nguồn (tín hiệu đơn lẻ, interviewer đã nhắc công cụ AI trước).
 
-**Điều cả 2 option giữ giống nhau để so sánh công bằng:**
-- Cùng một bài học mẫu: *Design the Experiment: prototype nhiều phương án*.
-- Cùng thời lượng thử: khoảng 5 phút mỗi option.
+**Phân công:** Option A do **Lê Thị Châm Anh** thiết kế và build. Option B do **Nguyễn Ngọc Linh** thiết kế và build (là phương án "Gọi AI khi cần" trong repo của Linh).
+
+**Điều cả 2 option giữ giống nhau:**
 - Cùng câu hỏi sau khi thử (xem `prototype-feedback-note.md`).
+- Cùng thời lượng thử: khoảng 5 phút mỗi option.
+- AI không tự lưu gì; học sinh là người quyết định cái gì được giữ lại.
+
+**Điều chưa giống nhau (giới hạn đã biết):** hai prototype dùng **hai bài học mẫu khác nhau**. A dùng bài *Design the Experiment: prototype nhiều phương án*; B dùng đoạn handout mẫu *"Rà câu trả lời AI với tài liệu nguồn"*. A gọi AI thật, B dùng câu trả lời AI soạn sẵn. Vòng sau cần đưa về cùng một bài để so sánh công bằng hơn.
 
 **Hai option khác nhau ở một trục chính: _AI can thiệp lúc nào và học sinh phải bỏ bao nhiêu công sức._**
 
-| | Option A: Tô rồi tổng hợp | Option B: Hỏi ngay tại chỗ |
+| | Option A: Tô rồi tổng hợp | Option B: Gọi AI khi cần |
 |---|---|---|
-| Thời điểm AI làm việc | Sau khi học xong | Ngay trong lúc đọc |
-| Công sức của học sinh | Cao (tự tô, tự ghi câu hỏi) | Trung bình (chỉ tô chỗ khó) |
-| Giả định chính đang test | H2: học sinh quay lại dùng bản tổng hợp để ôn | H3: chỗ chưa hiểu cần được giải ngay, để sau sẽ quên |
+| Thời điểm AI làm việc | Một lần, sau khi học xong cả bài | Mỗi khi học sinh chủ động yêu cầu, trên từng dấu vết đã lưu |
+| Phạm vi AI đọc | Toàn bộ bài học + mọi đoạn đã tô | Chỉ đoạn đã đánh dấu + câu hỏi + vị trí nguồn |
+| Công sức của học sinh | Cao (tự tô cả bài, tự ghi câu hỏi) | Trung bình (chọn dấu vết, rà và sửa bản nháp) |
+| Giả định chính đang test | H2: học sinh quay lại dùng bản tổng hợp để ôn | H3: chỗ chưa hiểu cần được giải ngay; H4: học sinh chấp nhận AI soạn nếu được sửa và xác nhận |
 
 ---
 
-## 2. Option A: Tô màu rồi AI tổng hợp
+## 2. Option A: Tô màu rồi AI tổng hợp (Châm Anh)
 
 **Ý tưởng một câu:** học sinh tô xanh chỗ quan trọng, tô đỏ chỗ chưa hiểu (kèm câu hỏi), học xong bấm một nút để AI viết bản tổng hợp riêng.
 
@@ -53,29 +58,30 @@
 
 ---
 
-## 3. Option B: Hỏi ngay tại chỗ
+## 3. Option B: Gọi AI khi cần (Linh)
 
-**Ý tưởng một câu:** học sinh bôi đen đoạn khó, AI giải thích ngay trong một khung nhỏ cạnh đoạn đó, không cần đợi học xong.
+**Ý tưởng một câu:** học sinh mở một dấu vết đã lưu (đoạn đánh dấu + câu hỏi còn mở), chủ động bấm yêu cầu AI soạn một bản nháp ghi chú, rồi tự đối chiếu với nguồn để sửa, lưu, để câu hỏi mở hoặc bỏ.
 
 | Thành phần | Mô tả |
 |---|---|
-| Trigger | Học sinh bôi đen một đoạn và bấm **Giải thích** |
-| Input | Đoạn được chọn + mục chứa đoạn đó + câu hỏi ngắn (không bắt buộc) |
-| AI action | Giải thích đoạn đó bằng lời dễ hiểu kèm một ví dụ, bám theo bài |
-| Output | Khung giải thích ngắn (3 đến 5 câu) ngay cạnh đoạn văn; có nút **Đã hiểu** / **Vẫn chưa hiểu** |
-| User control | Học sinh chọn đoạn nào cần hỏi; có thể hỏi tiếp; lời giải thích được ghim vào lề bài |
+| Trigger | Học sinh mở dấu vết rồi bấm **Yêu cầu AI soạn nháp**. Trước khi bấm, màn hình nói rõ AI chỉ dùng đoạn đang mở, không dùng nguồn ngoài, không tự xác minh, không tự lưu |
+| Input | Đoạn được đánh dấu + câu hỏi còn mở + vị trí nguồn (tên buổi, mục) |
+| AI action | Soạn một bản nháp ghi chú ngắn trả lời câu hỏi, giới hạn trong đoạn nguồn |
+| Output | Bản nháp dán nhãn **"chưa xác minh, chưa lưu"**, đặt cạnh đoạn nguồn để đối chiếu |
+| User control | Sửa rồi lưu · lưu như đang thấy · để câu hỏi mở · bỏ nháp và tự viết · dừng và quay về nguồn. Note lưu xong mang nhãn "có hỗ trợ AI, chưa xác minh" kèm nguồn |
 
-**Luồng chính:** Đọc bài → bôi đen chỗ khó → đọc giải thích → bấm Đã hiểu hoặc hỏi tiếp → đọc tiếp.
+**Luồng chính:** Mở dấu vết → đọc giới hạn của AI → yêu cầu nháp → đối chiếu với đoạn nguồn → sửa/lưu, để mở hoặc bỏ.
 
-**Điểm mạnh:** giải quyết chỗ chưa hiểu ngay khi còn nhớ ngữ cảnh; không cần công sức tô cả bài.
+**Điểm mạnh:** học sinh biết rõ lúc nào mình nhờ AI; có điểm bắt đầu thay vì tự viết từ trang trắng; nguồn luôn nằm cạnh bản nháp.
 
-**Rủi ro:** không tạo ra bản note tổng để ôn tập; học sinh có thể ỷ lại, hỏi cả những chỗ tự hiểu được; nhiều lần gọi AI nhỏ, tốn chi phí hơn.
+**Rủi ro:** học sinh có thể lưu bản nháp mà không đối chiếu nguồn; công rà và sửa nháp chưa chắc ít hơn công tự viết; mỗi dấu vết một lần gọi AI nên chi phí tăng theo số lần hỏi.
 
 **Muốn học được từ người thử:**
-- Họ hỏi bao nhiêu lần trong 5 phút? Có chỗ nào hỏi xong vẫn bấm "Vẫn chưa hiểu" không?
-- Họ có nhắc tới việc muốn giữ lại các lời giải thích để ôn sau không?
+- Họ có đọc đoạn nguồn trước khi lưu bản nháp không?
+- Họ sửa gì trong bản nháp, hay lưu nguyên?
+- Họ có thấy đường "bỏ nháp, tự làm tiếp" khi không muốn dùng AI không?
 
-**Mức độ prototype:** `[Figma có thể bấm / HTML tĩnh với câu trả lời viết sẵn / chạy AI thật]`
+**Mức độ prototype:** click-through Markdown trong repo của Linh, câu trả lời AI soạn sẵn (không gọi model). Không có ô nhập: người thử nói thành lời nội dung muốn viết hoặc sửa.
 
 ---
 

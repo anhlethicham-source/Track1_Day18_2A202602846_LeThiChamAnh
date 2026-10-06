@@ -20,7 +20,8 @@
 | Họ tên | Lê Thị Châm Anh     |
 | Case | **Case B: AI Notes: Personal Learning Notes** |
 | Nhóm | Lê Thị Châm Anh - 2A202602846, Nguyễn Ngọc Linh - 2A202602480 |
-| Vai trò của mình trong nhóm | Làm prototype A, điều phối 1 phiên thử |
+| Vai trò của mình trong nhóm | Thiết kế và build prototype A, điều phối phiên thử 1, viết bản tổng hợp nhóm |
+| Vai trò của Linh | Thiết kế và build prototype B, điều phối phiên thử 2 (mô phỏng) |
 
 ## 2. Vấn đề và giả định mang đi thử (kế thừa Day 17)
 
@@ -33,17 +34,18 @@
 | H1 | Học sinh thực sự tự tô và ghi chú khi học | A (có tự tô mà không cần nhắc không) |
 | H2 | Học sinh quay lại dùng note để ôn tập (**rủi ro nhất**) | A |
 | H3 | Chỗ chưa hiểu cần được giải ngay, để sau sẽ quên | B |
-| H4 | Học sinh chấp nhận AI tổ chức note nếu được sửa và xác nhận | A |
+| H4 | Học sinh chấp nhận AI tổ chức note nếu được sửa và xác nhận | A, B |
 
 ## 3. Hai option thiết kế
 
-Nhóm có 2 người nên làm 2 option. Hai option khác nhau ở một trục: **AI can thiệp lúc nào và học sinh tốn bao nhiêu công sức.** Chi tiết: [`three-option-design-sheet.md`](three-option-design-sheet.md).
+Nhóm có 2 người nên làm 2 option: **A do Châm Anh**, **B do Linh**. Hai option khác nhau ở một trục: **AI can thiệp lúc nào và học sinh tốn bao nhiêu công sức.** Chi tiết: [`three-option-design-sheet.md`](three-option-design-sheet.md).
 
-| | A: Tô rồi tổng hợp | B: Hỏi ngay tại chỗ |
+| | A: Tô rồi tổng hợp (Châm Anh) | B: Gọi AI khi cần (Linh) |
 |---|---|---|
-| AI làm việc khi nào | Sau khi học xong | Trong lúc đọc |
-| Công sức học sinh | Cao | Trung bình |
-| Output | Bản tổng hợp 4 mục | Lời giải thích ngắn cạnh đoạn khó |
+| AI làm việc khi nào | Một lần, sau khi học xong cả bài | Khi học sinh chủ động yêu cầu, trên từng dấu vết đã lưu |
+| Công sức học sinh | Cao (tô cả bài) | Trung bình (rà và sửa bản nháp) |
+| Output | Bản tổng hợp 4 mục | Bản nháp ghi chú ngắn, nhãn "chưa xác minh", đặt cạnh đoạn nguồn |
+| Mức prototype | App chạy thật, gọi AI thật | Click-through Markdown, câu trả lời AI soạn sẵn |
 
 ## 4. Micro-prototype
 
@@ -51,15 +53,16 @@ Link: [`prototype-link.md`](prototype-link.md).
 
 ## 5. Kết quả thử nghiệm và Next Change
 
-- **Phiên của mình:** `[1–2 câu: người thử chọn option nào, điều quan sát quan trọng nhất]` · chi tiết: [`prototype-feedback-note.md`](prototype-feedback-note.md)
-- **Pattern của cả nhóm:** `[1–2 điều lặp lại ở cả 2 phiên]` · chi tiết: [`group-feedback-synthesis.md`](group-feedback-synthesis.md)
-- **Next Change:** `[thay đổi cụ thể nhóm sẽ làm và vì sao]`
+- **Phiên của mình (thật, 05/10/2026):** người thử chọn **A** vì "muốn chủ động hơn", chỉ muốn note phần kiến thức mới. Điều quan trọng nhất: lúc chờ AI tổng hợp, người thử không nhận ra AI đang chạy; cuối phiên họ muốn được hỏi tiếp ngay trên bản note. Chi tiết: [`prototype-feedback-note.md`](prototype-feedback-note.md)
+- **Phiên của Linh (mô phỏng, tester do AI dựng):** T1 chọn **B** vì "biết lúc nào mình nhờ AI", đối chiếu nháp với nguồn rồi mới lưu.
+- **Pattern của cả nhóm:** (P1) người thử chọn phương án mà mình giữ quyền chủ động; (P2) người thử khựng lại khi không rõ AI đang làm gì; (P3) người thử muốn hỏi tiếp hoặc tự kiểm tra, không coi output của AI là điểm cuối. Vì phiên 2 là mô phỏng nên đây mới là tín hiệu. Chi tiết: [`group-feedback-synthesis.md`](group-feedback-synthesis.md)
+- **Next Change:** giữ A, thêm nút **Hỏi tiếp** dưới mỗi mục "Giải đáp chỗ chưa hiểu". Học sinh tự bấm khi vẫn chưa hiểu, AI trả lời ngắn dựa trên bài học và kèm trích đoạn nguồn. Lý do: AI chỉ chạy khi học sinh muốn (P1) và người thử xin đúng tính năng này (P3).
 
 ## 6. Reflection và AI Support Log
 
-**Điều mình học được khi làm parallel prototype:** `[…]`
+**Điều mình học được khi làm parallel prototype:** khi đặt hai cách cạnh nhau, người thử nói được vì sao họ chọn, điều mà hỏi về một prototype đơn lẻ khó có được. Lý do chọn ("muốn chủ động hơn") quan trọng hơn bản thân lựa chọn, và nó chỉ ra hướng ghép hai option chứ không phải chọn một bỏ một. Mình cũng thấy một lỗi nhỏ ở màn chờ chỉ lộ ra khi quan sát người thật dùng, đọc code không thấy.
 
-**Nếu làm lại, mình sẽ đổi:** `[…]`
+**Nếu làm lại, mình sẽ đổi:** thống nhất với Linh một bài học chung cho cả A và B ngay từ đầu; làm prototype B ở cùng mức với A (hoặc hạ A xuống cùng mức với B) để so sánh công bằng; ghi số liệu ngay trong phiên; và cả hai người đều test với người thật thay vì một phiên mô phỏng.
 
 **AI Support Log:** [`ai-support-log.md`](ai-support-log.md)
 

@@ -42,13 +42,13 @@
 | Chỗ ngập ngừng, thao tác sai | Lúc đầu không biết là nó đã được tổng hợp hay chưa vì không thấy dấu hiệu, nhưng một lúc sau thì thấy được |
 | Câu nói nguyên văn | Xem lý do chọn A ở mục 4 |
 
-### Option B: Hỏi ngay tại chỗ
+### Option B: Gọi AI khi cần (prototype của Linh)
 
 | Hạng mục | Ghi chép |
 |---|----------|
 | Hoàn thành nhiệm vụ? | `Có`     |
-| Số lần hỏi, số lần bấm "Vẫn chưa hiểu" | `[…]`    |
-| Có hỏi về việc lưu lại lời giải thích không | `[…]`    |
+| Số lần yêu cầu AI soạn nháp, có sửa nháp không | `[…]`    |
+| Có đọc đoạn nguồn trước khi lưu không | `[…]`    |
 | Chỗ ngập ngừng, thao tác sai | `[…]`    |
 | Câu nói nguyên văn | > `[…]`  |
 
@@ -69,4 +69,9 @@
 | H3: chỗ chưa hiểu cần được giải ngay | Học sinh cần được giải thích ngay lập tức | Mục 4: muốn ghép thêm việc hỏi tiếp trên bản note để hiểu tường tận bài học |
 | H4: học sinh chấp nhận AI tổ chức note nếu được sửa và xác nhận | Học sinh có thể thay đổi góc nhìn mình chưa hiểu về vấn đề | Mục 4: chọn A (tự quyết đoạn nào được note) thay vì để AI quyết |
 
-**Điều mình sẽ làm khác ở phiên sau (về cách điều phối):** `[…]`
+**Điều mình sẽ làm khác ở phiên sau (về cách điều phối):**
+- Đếm và ghi ngay trong phiên số đoạn tô xanh/đỏ, số lần hỏi, thay vì ghi sau. Lần này nhiều ô số liệu bị trống vì không ghi kịp.
+- Ghi nguyên văn ở **cả hai** option, không chỉ ở option người thử chọn.
+- Dùng cùng một bài học cho A và B, để khác biệt chỉ nằm ở cách AI can thiệp.
+- Xin phép ghi âm từ đầu để có trích dẫn chính xác.
+- Hẹn hỏi lại người thử sau 1 đến 2 ngày xem họ có mở lại note để ôn không (kiểm H2).
