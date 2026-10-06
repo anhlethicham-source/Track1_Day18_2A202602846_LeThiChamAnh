@@ -1,0 +1,17 @@
+{
+  "name": "to-bai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Giáo viên đăng tài liệu, học sinh tô màu ghi chú, AI tổng hợp kiến thức theo bài học",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "dependencies": {
+    "openai": "^7.28.0"
+  }
+}

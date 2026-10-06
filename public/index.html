@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tô Bài</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231F2A6B'/%3E%3Cpath d='M7 20h12' stroke='%234ADE80' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M13 12h12' stroke='%23FF7A7A' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Lexend:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Tô Bài, trang chủ">
+    <span class="logo" aria-hidden="true"><i></i><i></i></span>
+    <span class="brand-name">Tô Bài</span>
+  </a>
+  <div class="who" id="who" hidden>
+    <span class="avatar" id="whoAvatar" aria-hidden="true"></span>
+    <span class="who-text">
+      <span class="who-name" id="whoName"></span>
+      <span class="who-role" id="whoRole"></span>
+    </span>
+    <button type="button" id="logoutBtn" class="btn btn-quiet btn-sm">Đăng xuất</button>
+  </div>
+</header>
+
+<main id="loginView" class="login" hidden>
+  <section class="login-hero" aria-hidden="true">
+    <p class="hero-kicker">Sổ tay học bài</p>
+    <p class="hero-title">Chỗ nào khó,<br><span class="mk mk-q">tô lại</span>.<br>AI giúp bạn <span class="mk mk-imp">hiểu</span>.</p>
+    <div class="demo">
+      <p class="demo-text">Prototype là <mark class="hl hl-imp demo-mark">cách rẻ nhất để biến giả thuyết thành bằng chứng</mark>. Nếu hai phương án chỉ khác màu nút, <mark class="hl hl-q demo-mark d2">đó là biến thể giao diện</mark>, chưa phải phương án thiết kế.</p>
+      <div class="demo-q"><span class="demo-tag q">Câu hỏi của bạn</span>Ranh giới giữa biến thể và phương án nằm ở đâu?</div>
+      <div class="demo-ai"><span class="demo-tag ai">AI giải đáp</span>Ranh giới nằm ở câu hỏi bạn đang kiểm chứng: đổi vai trò của AI là phương án mới, đổi màu nút chỉ là biến thể…</div>
+    </div>
+  </section>
+
+  <section class="login-side">
+    <form id="loginForm" class="login-card" novalidate>
+      <div class="eyebrow" id="loginEyebrow">Vào lớp</div>
+      <h1 class="login-title" id="loginHeading">Bắt đầu học</h1>
+      <ol id="studentIntro" class="steps">
+        <li><span class="step-n">1</span><span>Đọc tài liệu thầy cô đăng.</span></li>
+        <li><span class="step-n">2</span><span>Tô <span class="hl hl-imp">xanh</span> ý quan trọng, tô <span class="hl hl-q">đỏ</span> chỗ chưa hiểu và ghi câu hỏi.</span></li>
+        <li><span class="step-n">3</span><span>Bấm ôn bài: AI tổng hợp kiến thức và giải thích từng chỗ bạn chưa hiểu.</span></li>
+      </ol>
+      <div class="field">
+        <label for="loginName">Tên của bạn</label>
+        <input id="loginName" autocomplete="name" placeholder="VD: Lê Thị Châm Anh">
+      </div>
+      <div class="field" id="codeField" hidden>
+        <label for="loginCode">Mã giáo viên</label>
+        <input id="loginCode" type="password" autocomplete="off" placeholder="Mã do nhà trường cấp">
+      </div>
+      <p id="loginStatus" class="status" role="status"></p>
+      <button type="submit" class="btn btn-primary btn-lg" id="loginSubmit">Vào học</button>
+      <p class="login-alt"><span id="loginAltText">Thầy cô cần đăng tài liệu?</span> <button type="button" id="loginSwitch" class="link">Đăng nhập giáo viên</button></p>
+    </form>
+  </section>
+</main>
+
+<main id="studentView" class="layout" hidden>
+  <nav class="library" aria-label="Tài liệu của lớp">
+    <h2 class="rail-title">Tài liệu</h2>
+    <ul id="docList" class="doc-list"></ul>
+  </nav>
+
+  <section class="reading">
+    <div class="doc-head">
+      <div class="doc-kicker" id="docLesson"></div>
+      <h1 id="docTitle" class="doc-title"></h1>
+      <div class="doc-by" id="docBy"></div>
+    </div>
+    <div class="howto" aria-label="Cách tô">
+      <span class="howto-text">Bôi đen một đoạn rồi chọn</span>
+      <span class="key-chip imp"><span class="hl hl-imp">Quan trọng</span><kbd>1</kbd></span>
+      <span class="key-chip q"><span class="hl hl-q">Chưa hiểu</span><kbd>2</kbd></span>
+    </div>
+    <article id="reader" class="paper"></article>
+  </section>
+
+  <aside class="notes" aria-label="Ôn bài và sổ note">
+    <section class="study">
+      <div class="study-top">
+        <span class="study-kicker">Ôn bài với AI</span>
+        <span id="syncState" class="sync" role="status"></span>
+      </div>
+      <div id="aiStats" class="study-stats"></div>
+      <button type="button" id="aiBtn" class="btn btn-ai">Tổng hợp và giải đáp</button>
+      <p class="study-hint" id="aiHint"></p>
+      <ul id="summaryList" class="summary-list"></ul>
+    </section>
+
+    <section class="notebook">
+      <div class="notebook-head">
+        <h2>Sổ note</h2>
+        <div class="seg seg-sm" id="scopeSeg" role="group" aria-label="Phạm vi">
+          <button type="button" data-scope="doc">Bài này</button>
+          <button type="button" data-scope="all">Tất cả</button>
+        </div>
+      </div>
+      <div class="tabs" id="filters" role="group" aria-label="Lọc theo màu">
+        <button type="button" data-filter="all">Tất cả <span class="n"></span></button>
+        <button type="button" data-filter="imp" class="t-imp">Quan trọng <span class="n"></span></button>
+        <button type="button" data-filter="q" class="t-q">Chưa hiểu <span class="n"></span></button>
+      </div>
+      <div id="noteList" class="note-list"></div>
+      <button type="button" id="exportBtn" class="btn btn-quiet btn-sm export">Xuất sổ note (Markdown)</button>
+    </section>
+  </aside>
+</main>
+
+<main id="teacherView" class="teacher" hidden>
+  <section class="t-form">
+    <div class="eyebrow">Giáo viên</div>
+    <h1 class="t-title">Đăng tài liệu cho lớp</h1>
+    <p class="t-lead">Tải file lên hoặc dán nội dung bài giảng. Tài liệu xuất hiện ngay trong danh sách của học sinh để các em tô màu và ghi chú.</p>
+    <form id="uploadForm" class="panel" novalidate>
+      <div class="field">
+        <label for="fTitle">Tiêu đề</label>
+        <input id="fTitle" autocomplete="off" placeholder="VD: Design the Experiment">
+      </div>
+      <div class="field">
+        <label for="fLesson">Buổi học / môn</label>
+        <input id="fLesson" autocomplete="off" placeholder="VD: AI in Action · Day 18">
+      </div>
+      <div id="drop" class="drop">
+        <span class="drop-icon" aria-hidden="true"></span>
+        <p><strong>Kéo thả file vào đây</strong> hoặc <button type="button" id="pickFile" class="link">chọn file từ máy</button></p>
+        <p class="small muted">PDF, Word (.docx), .txt, .md</p>
+        <input type="file" id="fFile" accept=".pdf,.docx,.txt,.md,.markdown,text/plain,text/markdown" hidden>
+      </div>
+      <div class="field">
+        <label for="fBody">Nội dung</label>
+        <textarea id="fBody" rows="12" placeholder="Dán nội dung bài giảng vào đây…"></textarea>
+        <p class="small muted" id="parseInfo"></p>
+      </div>
+      <p id="fStatus" class="status" role="status"></p>
+      <div class="actions">
+        <button type="submit" id="postBtn" class="btn btn-primary">Đăng tài liệu</button>
+      </div>
+    </form>
+  </section>
+  <section class="t-list">
+    <h2 class="t-sub">Tài liệu đã đăng</h2>
+    <p class="small muted">Ghi chú và chỗ chưa hiểu của mỗi học sinh là riêng của các em; giáo viên chỉ quản lý tài liệu.</p>
+    <ul id="teacherDocs" class="t-docs"></ul>
+  </section>
+</main>
+
+<div id="toolbar" class="toolbar" role="toolbar" aria-label="Tô màu" hidden>
+  <button type="button" data-act="imp" class="tb-imp"><span class="swatch"></span>Quan trọng<kbd>1</kbd></button>
+  <button type="button" data-act="q" class="tb-q"><span class="swatch"></span>Chưa hiểu<kbd>2</kbd></button>
+  <button type="button" data-act="note" id="tbNote" class="tb-plain">Ghi chú</button>
+  <button type="button" data-act="clear" id="tbClear" class="tb-plain">Xoá màu</button>
+</div>
+
+<dialog id="aiDlg" class="dlg-wide" aria-labelledby="aiTitle">
+  <div class="dlg-head">
+    <div class="eyebrow" id="aiEyebrow">Bản ôn tập</div>
+    <h2 id="aiTitle" tabindex="-1" autofocus></h2>
+    <p id="aiSub" class="small muted"></p>
+  </div>
+  <div class="dlg-body">
+    <div id="aiOut" class="md"></div>
+    <textarea id="aiFallback" class="fallback" readonly hidden aria-label="Nội dung Markdown"></textarea>
+  </div>
+  <div class="dlg-actions">
+    <span id="aiMsg" class="small muted" role="status"></span>
+    <button type="button" id="aiCopy" class="btn btn-quiet">Sao chép</button>
+    <button type="button" id="aiRedo" class="btn btn-quiet">Tạo lại</button>
+    <button type="button" id="aiClose" class="btn btn-primary">Đóng</button>
+  </div>
+</dialog>
+
+<dialog id="exportDlg" aria-labelledby="exportTitle">
+  <div class="dlg-head">
+    <div class="eyebrow">Xuất sổ note</div>
+    <h2 id="exportTitle" tabindex="-1" autofocus>Bản note tổng hợp</h2>
+    <p id="exportSub" class="small muted"></p>
+  </div>
+  <div class="dlg-body">
+    <div id="exportPreview" class="preview"></div>
+    <textarea id="exportFallback" class="fallback" readonly hidden aria-label="Nội dung Markdown"></textarea>
+  </div>
+  <div class="dlg-actions">
+    <span id="exportMsg" class="small muted" role="status"></span>
+    <button type="button" id="dlBtn" class="btn btn-quiet">Tải file .md</button>
+    <button type="button" id="closeDlg" class="btn btn-quiet">Đóng</button>
+    <button type="button" id="copyBtn" class="btn btn-primary">Sao chép Markdown</button>
+  </div>
+</dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
